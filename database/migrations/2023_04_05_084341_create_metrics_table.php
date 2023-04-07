@@ -1,0 +1,39 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('metrics', function (Blueprint $table) {
+            $table->id();
+            $table->timestamps();
+
+            $table->foreignId('counter_id')->constrained('counters')->cascadeOnDelete();
+
+            $table->integer('top')->unsigned();
+            $table->integer('left')->unsigned();
+            $table->integer('width')->unsigned();
+            $table->integer('height')->unsigned();
+
+            $table->string('page');
+
+            $table->timestamp('date')->nullable();
+
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('metrics');
+    }
+};
