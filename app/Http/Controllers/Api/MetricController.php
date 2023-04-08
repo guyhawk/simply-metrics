@@ -3,15 +3,14 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Counter;
-use App\Models\Metric;
-use Carbon\Carbon;
+use App\Services\MetricService;
+
+
 
 class MetricController extends Controller {
     public function store() {
         $request = request();
         $url = $request->headers->get('origin');
-        $data = ['url' => $url];
 
         $metrics_validated = validator($request->all(), [
             'counter_id' => ['required', 'integer'],
@@ -22,24 +21,16 @@ class MetricController extends Controller {
             'date' => ['required'],
         ])->validate();
 
-        $counter_id = $metrics_validated['counter_id'];
+        $result = MetricService::create($metrics_validated, $url);
 
-        $counter = Counter::query()->where('counter',$counter_id  )->firstOrFail();
 
-        if ($counter['counter'] == $counter_id and $counter['site_url'] == $url) {
+        if ($result) {
+            // return response('',201);
 
-            $metrics = Metric::query()->create([
-                'counter_id' => $counter['id'] ,
-                'left' => $metrics_validated['left'],
-                'top' => $metrics_validated['top'],
-                'height' => $metrics_validated['height'],
-                'width' => $metrics_validated['width'],
-                'page' => '/',
-                'date' => (new Carbon($metrics_validated['date']))->format('Y-m-d h:00:00'),
-            ]);
-            return response('',201);
+            return response()->json(['res'=> $result]);
         } else {
-            return response('',404);
+            return response()->json(['res'=> $result]);
+            // return response('',404);
         }
     }
 }
