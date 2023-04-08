@@ -25,12 +25,9 @@ class MetricController extends Controller {
 
 
         if ($result) {
-            // return response('',201);
-
-            return response()->json(['res'=> $result]);
+            return response('',201);
         } else {
-            return response()->json(['res'=> $result]);
-            // return response('',404);
+            return response('',404);
         }
     }
 }
