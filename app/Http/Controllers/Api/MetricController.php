@@ -18,7 +18,7 @@ class MetricController extends Controller {
             'top' => ['required', 'integer'],
             'height' => ['required', 'integer'],
             'width' => ['required', 'integer'],
-            'date' => ['required'],
+            'date' => ['required', 'date'],
         ])->validate();
 
         $result = MetricService::create($metrics_validated, $url);

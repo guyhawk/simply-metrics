@@ -20,4 +20,8 @@ class CounterService
     public static function getAllCounters(){
         return Counter::query()->get();
     }
+
+    public static function delete($id) {
+        Counter::destroy($id);
+    }
 }

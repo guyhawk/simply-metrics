@@ -45,8 +45,9 @@ class DashboardController extends Controller
         return view('dashboard.create');
     }
 
-    public function destroy() {
-        return 'dashboard.destroy';
+    public function destroy($counter_id) {
+        CounterService::delete($counter_id);
+        return redirect()->route('dashboard');
     }
 
 }

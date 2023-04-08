@@ -8,7 +8,12 @@
         </h2 >
         <div>
             {{-- TODO add delete functionality --}}
-            <a href="{{ route('dashboard.show',  $counter->id) }}" class="btn">{{__('Delete')}}</a>
+            ,<form action="{{ route('dashboard.destroy',  $counter->id) }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button class="btn">{{__('Delete')}}</button>
+            </form>
+
         </div>
     </div>
 
