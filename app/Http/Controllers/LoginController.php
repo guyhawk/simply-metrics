@@ -13,11 +13,6 @@ class LoginController extends Controller
         return view('login.index');
     }
 
-    public function store(Request $request ) {
-        $data = $request->all();
-        return redirect()->route('dashboard');
-    }
-
     public function authenticate(Request $request)
     {
         $credentials = $request->validate([
