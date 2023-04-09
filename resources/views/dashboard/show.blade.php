@@ -44,11 +44,16 @@
         <div class="counter-code__text">   {{ $counter_code }}</div>
     </div>
 
-    <div class="title-2">{{ __('Clicks map') }}</div>
-    <canvas id="clickmap" width="960px" height="540px" style="border: 1px solid #eee"></canvas>
 
-    <div class="title-2">{{ __('Clicks today') }}
-    <canvas id="myChart" height="100px"></canvas>
+    @if (empty($metrics))
+        <div class="empty-metrics">{{__('No statistics for this counter.')}}</div>
+    @else
+        <div class="title-2">{{ __('Clicks map') }}</div>
+        <canvas id="clickmap" width="960px" height="540px" style="border: 1px solid #eee"></canvas>
+
+        <div class="title-2">{{ __('Clicks today') }}
+        <canvas id="myChart" height="100px"></canvas>
+    @endif
 
 @endsection
 
