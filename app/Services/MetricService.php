@@ -23,7 +23,26 @@ class MetricService
             ->groupBy('date')
             ->pluck('clicks', 'd');
 
-        return ['labels' => $metrics->keys(), 'data'=>$metrics->values() ];
+        //generation of statistics data on activity per day
+        //TODO не самый оптимальный способ подготовки данных
+        $dateFormated = (new Carbon($date))->format('Y-m-d');
+        for($i=0; $i<24; $i++) {
+            $str = (string) $i;
+            if ($i<10) {
+                $str = '0'.$i;
+            }
+            $day["{$dateFormated} {$str}:00:00"] = 0;
+        }
+        $result= array_merge($day, $metrics->toArray());
+        $labels = $metrics->keys();
+        $labels_modify = [];
+
+        foreach($labels as $l) {
+            $new = (new Carbon($l))->format('H');
+            $labels_modify[] = $new;
+        }
+
+        return ['labels' => $labels_modify, 'data'=>$metrics->values() ];
     }
 
     public static function create($metrics_validated, $url){

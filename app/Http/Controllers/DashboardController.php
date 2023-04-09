@@ -43,7 +43,7 @@ class DashboardController extends Controller
             'next_date' => (new Carbon($input_date))->addDay()->format('Y-m-d'),
         ];
 
-        $metrics_today = MetricService::getMetricsByDateToChart($counter->id, $date);
+        $metrics_today = MetricService::getMetricsByDateToChart($counter->id, $input_date);
 
         $labels = $metrics_today['labels'];
         $data = $metrics_today['data'];
