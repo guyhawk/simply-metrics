@@ -84,6 +84,20 @@ a:hover {
     color: #fff;
     cursor: pointer;
 }
+
+.btn-secondary, a.btn-secondary  {
+    background: none;
+    border: 1px solid #0a5148;
+    color: #000;
+}
+.btn-secondary:hover {
+    background: #eee;
+    color: #272727;
+}
+.mb-1 {
+    margin-bottom: 8px;
+}
+
 .create-form {
     width: 100%;
     max-width: 400px;
@@ -197,6 +211,26 @@ a:hover {
     padding: 24px;
     background-color: #fff;
     border: 1px solid #eee;
+}
+
+.page-header-right {
+    position: relative;
+    /* width: 300px; */
+}
+
+.confirmation-delete {
+    position: absolute;
+    top: 0;
+    left: -8px;
+    padding: 8px;
+    border: 1px solid #eee;
+    display: none;
+
+    background-color: #fff;
+}
+
+.confirmation-delete.open {
+    display: block;
 }
 
 

@@ -6,14 +6,17 @@
         <h2 class="page-title">
             {{ $counter->site_name }}
         </h2 >
-        <div>
-            {{-- TODO add delete functionality --}}
-            ,<form action="{{ route('dashboard.destroy',  $counter->id) }}" method="POST">
-                @csrf
-                @method('DELETE')
-                <button class="btn">{{__('Delete')}}</button>
-            </form>
-
+        <div class="page-header-right">
+            <a href="#" class="btn btn-detele-button">{{__('Delete')}}</a>
+            <div class="confirmation-delete">
+                <div class="mb-1">{{__('Delete counter?')}}</div>
+                <form action="{{ route('dashboard.destroy',  $counter->id) }}" method="POST">
+                     @csrf
+                    @method('DELETE')
+                    <button class="btn mb-1">{{__('Yes')}}</button>
+                </form>
+                <a href="#" class="btn btn-secondary btn-confirmation-cancel">{{__('No')}}</a>
+            </div>
         </div>
     </div>
 
@@ -109,5 +112,22 @@
       }
     }
     draw()
-  </script>
+    </script>
+    <script>
+        const confirmation_delete_container = document.querySelector('.confirmation-delete');
+        const btn_delete = document.querySelector('.btn-detele-button');
+        const btn_delete_cancel = document.querySelector('.btn-confirmation-cancel');
+
+        btn_delete.addEventListener('click', (e)=>{
+            e.preventDefault();
+            confirmation_delete_container.classList.add('open');
+        });
+
+        btn_delete_cancel.addEventListener('click', (e)=>{
+            e.preventDefault();
+            confirmation_delete_container.classList.remove('open');
+        })
+
+
+    </script>
 @endpush
