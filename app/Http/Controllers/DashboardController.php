@@ -29,15 +29,28 @@ class DashboardController extends Controller
 
     public function show(Counter $counter) {
         $metrics = MetricService::getMetricsById($counter->id);
+        $request = request();
 
-        $metrics_today = MetricService::getMetricsByDateToChart($counter->id, new Carbon(now()));
+        $input_date = validator($request->all(), [
+            'date' => ['nullable', 'string', 'date'],
+        ])->validate();
+
+        $input_date = (new Carbon($input_date['date'] ?? null))->format('Y-m-d');
+
+        $date = [
+            'current_date' => $input_date,
+            'prev_date' => (new Carbon($input_date))->subDay()->format('Y-m-d'),
+            'next_date' => (new Carbon($input_date))->addDay()->format('Y-m-d'),
+        ];
+
+        $metrics_today = MetricService::getMetricsByDateToChart($counter->id, $date);
 
         $labels = $metrics_today['labels'];
         $data = $metrics_today['data'];
         $counter_id = $counter->counter;
         $counter_code = MetricService::createCounterCode($counter_id);
 
-        return view('dashboard.show', compact('counter', 'labels', 'data', 'counter_code', 'metrics'));
+        return view('dashboard.show', compact('counter', 'labels', 'data', 'counter_code', 'metrics', 'date'));
 
     }
 

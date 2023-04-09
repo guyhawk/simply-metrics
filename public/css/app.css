@@ -244,6 +244,36 @@ a:hover {
     height: 50px
 }
 
+.data-widget {
+    display: flex;
+    height: 32px;
+    align-items: center;
+}
+.data-widget__control {
+    width: 32px;
+    height: 32px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #eee;
+
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+
+.data-widget__control:hover {
+    background-color: #eee;
+    text-decoration: none;
+}
+
+.data-widget__control_prev {
+    margin-right: 16px;
+}
+.data-widget__control_next {
+    margin-left: 16px;
+}
+
 
 
 

@@ -51,7 +51,12 @@
         <div class="title-2">{{ __('Clicks map') }}</div>
         <canvas id="clickmap" width="960px" height="540px" style="border: 1px solid #eee"></canvas>
 
-        <div class="title-2">{{ __('Clicks today') }}
+        <div class="title-2">{{ __('Clicks') }}</div>
+        <div class="data-widget">
+            <a href="{{route('dashboard.show', $counter->id)}}?date={{$date['prev_date']}}" class="data-widget__control data-widget__control_prev"><</a>
+            <div class="data-widget__today">{{$date['current_date']}}</div>
+            <a href="{{route('dashboard.show', $counter->id)}}?date={{$date['next_date']}}"class="data-widget__control data-widget__control_next">></a>
+        </div>
         <canvas id="myChart" height="100px"></canvas>
     @endif
 
@@ -69,7 +74,7 @@
     const data = {
         labels: labels,
         datasets: [{
-            label: 'Activity today',
+            label: 'Activity',
             backgroundColor: 'rgb(4, 32, 28)',
             borderColor: 'rgb(4, 32, 28)',
             data: users,
@@ -92,7 +97,6 @@
 <script type="text/javascript">
     function draw(){
      const metrics =  {{ Js::from($metrics) }};
-     console.log(metrics);
       let canvas = document.getElementById('clickmap');
 
       if (canvas.getContext){
