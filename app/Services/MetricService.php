@@ -34,7 +34,7 @@ class MetricService
             $day["{$dateFormated} {$str}:00:00"] = 0;
         }
         $result= array_merge($day, $metrics->toArray());
-        $labels = $metrics->keys();
+        $labels = array_keys($result);
         $labels_modify = [];
 
         foreach($labels as $l) {
@@ -42,7 +42,7 @@ class MetricService
             $labels_modify[] = $new;
         }
 
-        return ['labels' => $labels_modify, 'data'=>$metrics->values() ];
+        return ['labels' => $labels_modify, 'data'=>array_values($result) ];
     }
 
     public static function create($metrics_validated, $url){

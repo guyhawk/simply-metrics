@@ -84,7 +84,16 @@
     const config = {
         type: 'line',
         data: data,
-        options: {}
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        stepSize: 1,
+                    },
+                },
+            },
+        }
     };
 
     const myChart = new Chart(
