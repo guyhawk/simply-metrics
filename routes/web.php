@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\CounterController;
 use App\Http\Controllers\LoginController;
 /*
 |--------------------------------------------------------------------------
@@ -15,17 +16,19 @@ use App\Http\Controllers\LoginController;
 */
 Route::redirect('/home', '/dashboard', 301);
 Route::redirect('/', '/dashboard', 301);
+Route::redirect('/dashboard/counter', '/dashboard', 301);
 
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate'])->name('login.authenticate');
-Route::get('/auth/logout', [LoginController::class, 'logout'])->name('login.logout');
+Route::get('/logout', [LoginController::class, 'logout'])->name('login.logout');
 
 Route::middleware('auth')->group(function() {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    Route::get('/dashboard/create', [DashboardController::class, 'create'])->name('dashboard.create');
-    Route::get('/dashboard/{counter}', [DashboardController::class, 'show'])->name('dashboard.show');
-    Route::delete('/dashboard/{counter}', [DashboardController::class, 'destroy'])->name('dashboard.destroy');
-    Route::post('/dashboard', [DashboardController::class, 'store'])->name('dashboard.store');
+
+    Route::get('/dashboard/counter/create', [CounterController::class, 'create'])->name('dashboard.counter.create');
+    Route::get('/dashboard/counter/{counter}', [CounterController::class, 'show'])->name('dashboard.counter.show');
+    Route::delete('/dashboard/counter/{counter}', [CounterController::class, 'destroy'])->name('dashboard.counter.destroy');
+    Route::post('/dashboard/counter', [CounterController::class, 'store'])->name('dashboard.counter.store');
 });
 
 

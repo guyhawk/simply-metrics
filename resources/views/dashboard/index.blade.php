@@ -15,7 +15,7 @@
                 <div class="card__site-url">
                     {{ __('Url') }}: {{ $counter->site_url }}
                 </div>
-                <a href="{{ route('dashboard.show', $counter->id )}}" class="card__site-link">{{ __('More >> ')}}</a>
+                <a href="{{ route('dashboard.counter.show', $counter->id )}}" class="card__site-link">{{ __('More >> ')}}</a>
             </div>
         @endforeach
     </div>

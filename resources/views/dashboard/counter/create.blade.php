@@ -7,7 +7,7 @@
         {{ __('Add new counter') }}
     </h2 >
 
-    <form action="{{route("dashboard.store")}}" method="POST" class="create-form">
+    <form action="{{route("dashboard.counter.store")}}" method="POST" class="create-form">
 
         @csrf
         <div class="form-item">

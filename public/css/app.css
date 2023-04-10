@@ -32,6 +32,16 @@ a:hover {
     margin-bottom: 16px;
     text-align: center;
 }
+.app-name a {
+    font-size: 1.4rem;
+    margin-bottom: 16px;
+    text-align: center;
+    color: #000;
+    cursor: pointer;
+}
+.app-name a:hover {
+    text-decoration: none;
+}
 .add-block {
     padding-left: 24px;
     padding-right: 24px;

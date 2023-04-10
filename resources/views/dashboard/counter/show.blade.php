@@ -10,7 +10,7 @@
             <a href="#" class="btn btn-detele-button">{{__('Delete')}}</a>
             <div class="confirmation-delete">
                 <div class="mb-1">{{__('Delete counter?')}}</div>
-                <form action="{{ route('dashboard.destroy',  $counter->id) }}" method="POST">
+                <form action="{{ route('dashboard.counter.destroy',  $counter->id) }}" method="POST">
                      @csrf
                     @method('DELETE')
                     <button class="btn mb-1">{{__('Yes')}}</button>
@@ -53,9 +53,9 @@
 
         <div class="title-2">{{ __('Clicks') }}</div>
         <div class="data-widget">
-            <a href="{{route('dashboard.show', $counter->id)}}?date={{$date['prev_date']}}" class="data-widget__control data-widget__control_prev"><</a>
+            <a href="{{route('dashboard.counter.show', $counter->id)}}?date={{$date['prev_date']}}" class="data-widget__control data-widget__control_prev"><</a>
             <div class="data-widget__today">{{$date['current_date']}}</div>
-            <a href="{{route('dashboard.show', $counter->id)}}?date={{$date['next_date']}}"class="data-widget__control data-widget__control_next">></a>
+            <a href="{{route('dashboard.counter.show', $counter->id)}}?date={{$date['next_date']}}"class="data-widget__control data-widget__control_next">></a>
         </div>
         <canvas id="myChart" height="100px"></canvas>
     @endif
