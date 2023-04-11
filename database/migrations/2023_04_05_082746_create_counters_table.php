@@ -19,6 +19,8 @@ return new class extends Migration
             $table->integer('counter')->unsigned()->unique();
             $table->string('site_name');
             $table->string('site_url');
+
+            $table->foreignId('user_id')->constrained('counters')->cascadeOnDelete();
         });
     }
 
