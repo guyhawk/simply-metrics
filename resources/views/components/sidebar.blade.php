@@ -8,10 +8,11 @@
 
     <nav class="nav">
         @foreach ($counters_list as $item)
-            <a href="{{ route("dashboard.counter.show", $item->id ) }}" class="nav__item">{{ $item->site_name }} </a>
+            <a href="{{ route("dashboard.counter.show", $item->id ) }}" class="nav__item {{  request()->is("dashboard/counter/{$item->id}") ? 'nav__item_active':''}}">{{ $item->site_name }} </a>
          @endforeach
     </nav>
     <div class="sidebar-footer">
-        <a href="{{ route('login.logout') }}" class="">{{__('Logout')}}</a>
+        <div class="sidebar-footer__user-name">{{ Auth::user()->name }}</div>
+        <a href="{{ route('login.logout') }}" class="sidebar-footer__logout">{{__('Logout')}}</a>
     </div>
 </div>

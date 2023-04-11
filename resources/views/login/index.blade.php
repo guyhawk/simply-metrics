@@ -18,7 +18,7 @@
             <input name="password" id="password" type="password" required class="form-item__input">
         </div>
         <div class="form-item">
-            <button type="submit" class="btn">{{ __('Login') }}
+            <button type="submit" class="btn w-full">{{ __('Login') }}
         </div>
 
     </form>

@@ -13,9 +13,9 @@
                 <form action="{{ route('dashboard.counter.destroy',  $counter->id) }}" method="POST">
                      @csrf
                     @method('DELETE')
-                    <button class="btn mb-1">{{__('Yes')}}</button>
+                    <button class="btn btn-small mb-1">{{__('Yes')}}</button>
                 </form>
-                <a href="#" class="btn btn-secondary btn-confirmation-cancel">{{__('No')}}</a>
+                <a href="#" class="btn btn-secondary btn-small btn-confirmation-cancel">{{__('No')}}</a>
             </div>
         </div>
     </div>
@@ -75,8 +75,8 @@
         labels: labels,
         datasets: [{
             label: 'Activity',
-            backgroundColor: 'rgb(4, 32, 28)',
-            borderColor: 'rgb(4, 32, 28)',
+            backgroundColor: 'rgb(1, 33, 39)',
+            borderColor: 'rgb(1, 33, 39)',
             data: users,
         }]
     };
